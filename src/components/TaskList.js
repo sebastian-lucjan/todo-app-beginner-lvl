@@ -1,14 +1,26 @@
 import React from 'react';
 import Task from './Task';
 
-const TaskList = () => {
+const TaskList = (props) => {
+  const tasks = props.tasks.map((task) => (
+    <Task
+      key={task.id}
+      task={task}
+      handleDeleteTask={props.handleDeleteTask}
+      handleChangeTaskStatus={props.handleChangeTaskStatus}
+    />
+  ));
+
   return (
-    <div>
-      <h2>Task list</h2>
-      <Task />
-      <Task />
-      <Task />
-    </div>
+    <>
+      <div className="active">
+        <div>Zadania do zrobienia</div>
+        {tasks}
+      </div>
+      <div className="done">
+        <div>Zadania zrobione</div>
+      </div>
+    </>
   );
 };
 

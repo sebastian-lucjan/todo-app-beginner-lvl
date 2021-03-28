@@ -4,9 +4,11 @@ class AddTask extends Component {
   state = {};
   render() {
     return (
-      <div>
-        <div>Add task</div>
-      </div>
+      <>
+        <div>
+          <h3>Dodaj zadanie</h3>
+        </div>
+      </>
     );
   }
 }
