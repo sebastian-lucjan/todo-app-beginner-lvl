@@ -38,15 +38,67 @@ class App extends Component {
         active: true,
         finishDate: null,
       },
+      {
+        id: 4,
+        text: 'odebrać list ze skrzynki',
+        date: '2018-02-15',
+        important: true,
+        active: true,
+        finishDate: null,
+      },
+      {
+        id: 5,
+        text: 'zrobić kurs internetowy',
+        date: '2018-02-15',
+        important: true,
+        active: true,
+        finishDate: null,
+      },
+      {
+        id: 6,
+        text: 'napisać apkę',
+        date: '2018-02-15',
+        important: true,
+        active: true,
+        finishDate: null,
+      },
     ],
   };
 
   handleDeleteTask = (id) => {
     console.log('delete');
+
+    // const tasks = [...this.state.tasks];
+    // const index = tasks.findIndex((task) => task.id === id);
+
+    // tasks.splice(index, 1);
+
+    // this.setState(() => {
+    //   return { tasks: tasks };
+    // });
+
+    let tasks = [...this.state.tasks];
+    tasks = tasks.filter((task) => task.id !== id);
+
+    this.setState(() => {
+      return { tasks };
+    });
   };
 
   handleChangeTaskStatus = (id) => {
     console.log('status');
+
+    const tasks = Array.from(this.state.tasks);
+    const mappedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        task.active = false;
+        task.finishDate = new Date().getTime();
+      }
+      return task;
+    });
+    this.setState(() => {
+      return { tasks: mappedTasks };
+    });
   };
 
   render() {
