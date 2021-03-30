@@ -4,6 +4,8 @@ import AddTask from './AddTask';
 import TaskList from './TaskList';
 
 class App extends Component {
+  idCounter = 7;
+
   state = {
     tasks: [
       {
@@ -101,11 +103,29 @@ class App extends Component {
     });
   };
 
+  handleAddTask = (taskText, date, isImportant) => {
+    console.log('test');
+    const task = {
+      id: this.idCounter,
+      text: taskText,
+      date,
+      important: isImportant,
+      active: true,
+      finishDate: null,
+    };
+
+    this.setState((prevState) => ({ tasks: [...prevState.tasks, task] }));
+
+    this.idCounter++;
+
+    return true;
+  };
+
   render() {
     return (
       <div className="App">
         TO-DO-APP
-        <AddTask />
+        <AddTask handleAddTask={this.handleAddTask} />
         <TaskList
           tasks={this.state.tasks}
           handleDeleteTask={this.handleDeleteTask}

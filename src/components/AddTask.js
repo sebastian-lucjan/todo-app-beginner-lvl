@@ -23,17 +23,33 @@ class AddTask extends Component {
 
   handleText = (e) => {
     this.setState({ text: e.target.value });
-    console.log(this.state.text);
   };
 
   handleChange = (e, type) => {
-    if ((type = 'checkbox')) this.setState({ date: e.target.checked });
+    if (type === 'checkbox') this.setState({ checked: e.target.checked });
     else this.setState({ date: e.target.value });
+  };
+
+  handleClick = () => {
+    const { text: taskText, checked: isImportant, date } = this.state;
+
+    if (taskText.length > 2) {
+      const add = this.props.handleAddTask(taskText, date, isImportant);
+
+      if (add) {
+        this.setState({
+          text: '',
+          checked: false,
+          date: this.minDate,
+        });
+      }
+    } else {
+      console.warn('za krótki opis zadania');
+    }
   };
 
   render() {
     const maxDate = this.minDate.slice(0, 4) * 1 + 2 + '-12-31';
-    console.log(maxDate);
 
     return (
       <>
@@ -47,9 +63,10 @@ class AddTask extends Component {
           <input
             type="checkbox"
             id="important"
+            checked={this.state.checked}
             onChange={(e) => this.handleChange(e, 'checkbox')}
           />
-          <label htmlFor="important">Priorytet</label>
+          <label htmlFor="important">priorytet</label>
           <br />
           <label htmlFor="date">Do kiedy zrobić</label>
           <input
@@ -60,7 +77,7 @@ class AddTask extends Component {
             onChange={this.handleChange}
           />
           <br />
-          <button>Dodaj</button>
+          <button onClick={this.handleClick}>Dodaj</button>
         </div>
       </>
     );

@@ -33,7 +33,7 @@ const TaskList = (props) => {
       </div>
       <div className="done">
         <h3>
-          Zadania zrobione <span>({doneTasks.length})</span>
+          Zadania zrobione po mistrzowsku<span>({doneTasks.length})</span>
         </h3>
         {doneTasks.length > 5 && (
           <span style={{ fontSize: 10, color: '#f00' }}>
