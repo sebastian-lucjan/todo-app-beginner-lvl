@@ -5,6 +5,14 @@ const TaskList = (props) => {
   const activeTasks = props.tasks.filter((task) => task.active);
   const doneTasks = props.tasks.filter((task) => !task.active);
 
+  doneTasks.sort((a, b) => b.finishDate - a.finishDate);
+  activeTasks.sort((a, b) => a.text.localeCompare(b.text));
+  // activeTasks.sort((a, b) => {
+  //   if (a.text > b.text) return 1;
+  //   else if (a.text < b.text) return -1;
+  //   return 0;
+  // });
+
   const tasksFromArr = (arr) => {
     return arr.map((task) => (
       <Task

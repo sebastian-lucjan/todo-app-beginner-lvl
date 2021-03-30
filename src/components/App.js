@@ -88,8 +88,6 @@ class App extends Component {
   };
 
   handleChangeTaskStatus = (id) => {
-    console.log('status');
-
     const tasks = Array.from(this.state.tasks);
     const mappedTasks = tasks.map((task) => {
       if (task.id === id) {

@@ -18,7 +18,7 @@ const Task = (props) => {
       </div>
     );
   } else {
-    const finish = new Date(finishDate).toLocaleDateString();
+    const finish = new Date(finishDate).toLocaleString();
     return (
       <div>
         <p>
